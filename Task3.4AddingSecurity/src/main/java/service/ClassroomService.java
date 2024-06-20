@@ -1,0 +1,35 @@
+package service;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import entity.Classroom;
+import lombok.RequiredArgsConstructor;
+import repository.ClassroomRepository;
+
+@Service
+@RequiredArgsConstructor
+public class ClassroomService {
+    private final ClassroomRepository classroomRepository;
+
+    public List<Classroom> findAll() {
+        return classroomRepository.findAll();
+    }
+
+    public Optional<Classroom> findById(Integer id) {
+        return classroomRepository.findById(id);
+    }
+
+    @Transactional
+    public Classroom save(Classroom classroom) {
+        return classroomRepository.save(classroom);
+    }
+
+    @Transactional
+    public void deleteById(Integer id) {
+        classroomRepository.deleteById(id);
+    }
+}

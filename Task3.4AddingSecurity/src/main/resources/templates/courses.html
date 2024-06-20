@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Courses</title>
+</head>
+<body>
+	<div class="container">
+		<h1>Courses</h1>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Name</th>
+					<th>Description</th>
+					<th>Teacher</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="course : ${courses}">
+					<td th:text="${course.courseId}">ID</td>
+					<td th:text="${course.courseName}">Name</td>
+					<td th:text="${course.courseDescription}">Description</td>
+					<td
+						th:text="${course.teacher.firstName + ' ' + course.teacher.lastName}">Teacher</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>

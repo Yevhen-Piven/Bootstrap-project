@@ -10,7 +10,7 @@ COPY src ./src
 
 RUN ./mvnw clean package
 
-COPY target/your-app-name.jar
+COPY target/app.jar /app/app.jar
 
 EXPOSE 8080
 

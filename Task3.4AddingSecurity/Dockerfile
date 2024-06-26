@@ -1,11 +1,17 @@
 
-FROM openjdk:17-jdk-slim
+FROM openjdk:11-jdk-slim
 
 
-ARG JAR_FILE=target/bootstrap-project.jar
+WORKDIR /app
 
-COPY ${JAR_FILE} app.jar
+COPY pom.xml .
+
+COPY src ./src
+
+RUN ./mvnw clean package
+
+COPY target/your-app-name.jar app.jar
 
 EXPOSE 8080
 
-ENTRYPOINT ["java", "-jar", "/app.jar"]
+ENTRYPOINT ["java", "-jar", "app.jar"]

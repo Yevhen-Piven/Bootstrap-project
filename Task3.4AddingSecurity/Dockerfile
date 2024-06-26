@@ -1,5 +1,5 @@
 
-FROM openjdk:17-jdk-slim
+FROM openjdk:18-jdk-slim
 
 
 WORKDIR /app
@@ -10,7 +10,7 @@ COPY src ./src
 
 RUN ./mvnw clean package
 
-COPY target/your-app-name.jar app.jar
+COPY target/your-app-name.jar
 
 EXPOSE 8080
 

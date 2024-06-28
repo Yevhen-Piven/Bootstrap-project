@@ -4,7 +4,7 @@ FROM openjdk:17-jdk-slim
 WORKDIR /app
 
 COPY /pom.xml ./pom.xml
-COPY Task3.4AddingSecurity/src ./src
+COPY /src ./src
 
 RUN ./Task3.4AddingSecurity/mvnw clean package
 

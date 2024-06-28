@@ -11,15 +11,18 @@ import java.util.List;
 import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
+
+import com.yevhenpiven.bootstrapproject.BootstrapprojectApplication;
 
 import entity.Teacher;
 import repository.TeacherRepository;
 
-@RunWith(MockitoJUnitRunner.class)
+@SpringBootTest(classes = BootstrapprojectApplication.class)
+@ActiveProfiles("test")
 class TeacherServiceTest {
     private static final int FIRS_TEST_TEACHER_ID = 1;
     private static final String FIRST_TEST_TEACHER_SURNAME = "Teacher sur 1";
@@ -63,9 +66,10 @@ class TeacherServiceTest {
     public void testSave() {
         Teacher teacherToSave = new Teacher(FIRS_TEST_TEACHER_ID, FIRS_TEST_DEPARTMENT_ID, FIRST_TEST_TEACHER_NAME,
                 FIRST_TEST_TEACHER_SURNAME);
+        when(teacherRepositoryMock.save(teacherToSave)).thenReturn(teacherToSave);
         Teacher savedTeacher = teacherService.save(teacherToSave);
         assertNotNull(savedTeacher);
-        assertEquals(teacherToSave.getFirstName(), savedTeacher.getFirstName());
+        assertEquals(FIRST_TEST_TEACHER_NAME, savedTeacher.getFirstName());
     }
 
     @Test

@@ -1,17 +1,21 @@
 
-FROM openjdk:18.0.1.1-jdk-slim
+FROM openjdk:17-jdk-slim
 
 
 WORKDIR /app
 
 COPY pom.xml .
 
-COPY src ./src
+CCOPY Task3.4AddingSecurity/pom.xml ./pom.xml
+COPY Task3.4AddingSecurity/src ./src
+COPY Task3.4AddingSecurity/mvnw ./mvnw
+COPY Task3.4AddingSecurity/.mvn ./.mvn
+
 RUN ./mvnw clean package
 
-COPY target/your-app-name.jar /app/your-app-name.jar
+COPY target/bootstrapproject.jar /app/bootstrapproject.jar
 
 
 EXPOSE 8080
 
-CMD ["java", "-jar", "your-app-name.jar"]
+CMD ["java", "-jar", "bootstrapproject.jar"]

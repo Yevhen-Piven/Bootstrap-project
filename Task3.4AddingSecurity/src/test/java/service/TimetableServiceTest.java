@@ -1,8 +1,8 @@
 package service;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -15,16 +15,19 @@ import java.util.List;
 import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
+
+import com.yevhenpiven.bootstrapproject.BootstrapprojectApplication;
 
 import dto.TimetableDTO;
 import entity.Timetable;
 import repository.TimetableRepository;
 
-@RunWith(MockitoJUnitRunner.class)
+@SpringBootTest(classes = BootstrapprojectApplication.class)
+@ActiveProfiles("test")
 class TimetableServiceTest {
     private static final int FIRS_TEST_TIMETABLE_ID = 1;
     private static final int SECOND_TEST_TIMETABLE_ID = 2;

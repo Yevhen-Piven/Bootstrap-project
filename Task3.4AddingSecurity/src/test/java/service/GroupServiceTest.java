@@ -11,21 +11,24 @@ import java.util.List;
 import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
+
+import com.yevhenpiven.bootstrapproject.BootstrapprojectApplication;
 
 import entity.Group;
 import repository.GroupRepository;
 
-@RunWith(MockitoJUnitRunner.class)
+@SpringBootTest(classes = BootstrapprojectApplication.class)
+@ActiveProfiles("test")
 class GroupServiceTest {
     private static final int FIRS_TEST_GROUP_ID = 1;
     private static final String FIRST_TEST_GROUP_NAME = "Group 1";
     private static final int SECOND_TEST_GROUP_ID = 2;
     private static final String SECOND_TEST_GROUP_NAME = "Group 2";
-    
+
     @Mock
     private GroupRepository groupRepositoryMock;
 
@@ -53,9 +56,10 @@ class GroupServiceTest {
     @Test
     public void testSave() {
         Group groupToSave = new Group(FIRS_TEST_GROUP_ID, FIRST_TEST_GROUP_NAME);
+        when(groupRepositoryMock.save(groupToSave)).thenReturn(groupToSave);
         Group savedGroup = groupService.save(groupToSave);
         assertNotNull(savedGroup);
-        assertEquals(groupToSave.getGroupName(), savedGroup.getGroupName());
+        assertEquals(FIRST_TEST_GROUP_NAME, savedGroup.getGroupName());
     }
 
     @Test

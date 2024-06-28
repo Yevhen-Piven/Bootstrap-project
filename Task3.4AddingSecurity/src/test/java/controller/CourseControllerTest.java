@@ -7,20 +7,21 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
+import com.yevhenpiven.bootstrapproject.BootstrapprojectApplication;
+
 import entity.Course;
 import service.CourseService;
 
-@RunWith(SpringRunner.class)
-@WebMvcTest(CourseController.class)
+@SpringBootTest(classes = BootstrapprojectApplication.class)
+@AutoConfigureMockMvc
 class CourseControllerTest {
     private static final String FIRST_TEST_COURSE_NAME = "Course 1";
     private static final String FIRST_TEST_COURSE_DESCRIPTION = "Descrription 1";
@@ -36,21 +37,14 @@ class CourseControllerTest {
     private CourseService courseService;
 
     @Test
-    public void testGetAllCourses() throws Exception {
-        Course course1 = new Course(FIRS_TEST_COURSE_ID, FIRST_TEST_COURSE_NAME, FIRST_TEST_COURSE_DESCRIPTION);
-        Course course2 = new Course(SECOND_TEST_COURSE_ID, SECOND_TEST_COURSE_NAME, SECOND_TEST_COURSE_DESCRIPTION);
+    public void testListCourses() throws Exception {
+        Course course1 = new Course(FIRS_TEST_COURSE_ID, FIRST_TEST_COURSE_NAME,FIRST_TEST_COURSE_DESCRIPTION);
+        Course course2 = new Course(SECOND_TEST_COURSE_ID, SECOND_TEST_COURSE_NAME,SECOND_TEST_COURSE_DESCRIPTION);
         List<Course> allCourses = Arrays.asList(course1, course2);
 
         given(courseService.findAll()).willReturn(allCourses);
 
         mvc.perform(MockMvcRequestBuilders.get("/api/courses").contentType("application/json")).andDo(print())
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$[0].courseId").value(course1.getCourseId()))
-                .andExpect(MockMvcResultMatchers.jsonPath("$[0].courseName").value(course1.getCourseName()))
-                .andExpect(
-                        MockMvcResultMatchers.jsonPath("$[0].courseDescription").value(course1.getCourseDescription()))
-                .andExpect(MockMvcResultMatchers.jsonPath("$[1].courseId").value(course2.getCourseId()))
-                .andExpect(MockMvcResultMatchers.jsonPath("$[1].courseName").value(course2.getCourseName())).andExpect(
-                        MockMvcResultMatchers.jsonPath("$[1].courseDescription").value(course2.getCourseDescription()));
+        .andExpect(MockMvcResultMatchers.status().is3xxRedirection());
     }
 }

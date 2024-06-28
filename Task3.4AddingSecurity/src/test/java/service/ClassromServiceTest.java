@@ -1,8 +1,9 @@
 package service;
 
-import static org.junit.Assert.assertNotNull;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.when;
 
@@ -11,15 +12,18 @@ import java.util.List;
 import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
+
+import com.yevhenpiven.bootstrapproject.BootstrapprojectApplication;
 
 import entity.Classroom;
 import repository.ClassroomRepository;
 
-@RunWith(MockitoJUnitRunner.class)
+@SpringBootTest(classes = BootstrapprojectApplication.class)
+@ActiveProfiles("test")
 class ClassromServiceTest {
 
     @Mock
@@ -55,9 +59,10 @@ class ClassromServiceTest {
     @Test
     public void testSave() {
         Classroom classroomTest = new Classroom(FIRS_TEST_CLASSROOM_ID, FIRSR_TEST_CLASSROOM_NAME);
-        Classroom savedClassroom = classroomService.save(classroomTest);
-        assertNotNull(savedClassroom);
-        assertEquals(classroomTest.getClassroomName(), savedClassroom.getClassroomName());
+                when(classroomRepositoryMock.save(classroomTest)).thenReturn(classroomTest);
+                Classroom savedClassroom = classroomService.save(classroomTest);
+                assertNotNull(savedClassroom);
+                assertEquals(FIRSR_TEST_CLASSROOM_NAME, savedClassroom.getClassroomName());
     }
 
     @Test

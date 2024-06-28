@@ -11,15 +11,18 @@ import java.util.List;
 import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
+
+import com.yevhenpiven.bootstrapproject.BootstrapprojectApplication;
 
 import entity.Department;
 import repository.DepartmentRepository;
 
-@RunWith(MockitoJUnitRunner.class)
+@SpringBootTest(classes = BootstrapprojectApplication.class)
+@ActiveProfiles("test")
 class DepartmentServiceTest {
     private static final int FIRS_TEST_DEPARTMENT_ID = 1;
     private static final String FIRST_TEST_DEPARTMENT_NAME = "Department 1";
@@ -53,9 +56,10 @@ class DepartmentServiceTest {
     @Test
     public void testSave() {
         Department departmentToSave = new Department(FIRS_TEST_DEPARTMENT_ID, FIRST_TEST_DEPARTMENT_NAME);
+        when(departmentRepositoryMock.save(departmentToSave)).thenReturn(departmentToSave);
         Department savedDepartment = departmentService.save(departmentToSave);
         assertNotNull(savedDepartment);
-        assertEquals(departmentToSave.getDepartmentName(), savedDepartment.getDepartmentName());
+        assertEquals(FIRST_TEST_DEPARTMENT_NAME, savedDepartment.getDepartmentName());
     }
 
     @Test

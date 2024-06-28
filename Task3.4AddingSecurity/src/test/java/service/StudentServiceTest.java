@@ -11,15 +11,18 @@ import java.util.List;
 import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
+
+import com.yevhenpiven.bootstrapproject.BootstrapprojectApplication;
 
 import entity.Student;
 import repository.StudentRepository;
 
-@RunWith(MockitoJUnitRunner.class)
+@SpringBootTest(classes = BootstrapprojectApplication.class)
+@ActiveProfiles("test")
 class StudentServiceTest {
     private static final int FIRS_TEST_STUDENT_ID = 1;
     private static final String FIRST_TEST_STUDENT_SURNAME = "Student sur 1";
@@ -62,9 +65,10 @@ class StudentServiceTest {
     public void testSave() {
         Student studentToSave = new Student(FIRS_TEST_STUDENT_ID, FIRS_TEST_GROUP_ID, FIRST_TEST_STUDENT_NAME,
                 FIRST_TEST_STUDENT_SURNAME);
+        when(studentRepositoryMock.save(studentToSave)).thenReturn(studentToSave);
         Student savedStudent = studentService.save(studentToSave);
         assertNotNull(savedStudent);
-        assertEquals(studentToSave.getFirstName(), savedStudent.getFirstName());
+        assertEquals(FIRST_TEST_STUDENT_NAME, savedStudent.getFirstName());
     }
 
     @Test

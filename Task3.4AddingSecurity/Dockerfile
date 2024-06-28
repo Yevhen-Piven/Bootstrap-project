@@ -6,7 +6,7 @@ WORKDIR /app
 
 COPY pom.xml .
 
-CCOPY Task3.4AddingSecurity/pom.xml ./pom.xml
+COPY Task3.4AddingSecurity/pom.xml ./pom.xml
 COPY Task3.4AddingSecurity/src ./src
 COPY Task3.4AddingSecurity/mvnw ./mvnw
 COPY Task3.4AddingSecurity/.mvn ./.mvn

@@ -10,17 +10,18 @@
 	crossorigin="anonymous">
 </head>
 <body>
-
-	<body>
-	<h1>Login</h1>
+    <h1>Login</h1>
     <form th:action="@{/login}" method="post">
         <div>
             <label>Username:</label>
-            <input type="text" name="username" />
+            <input type="text" name="username"/>
         </div>
         <div>
             <label>Password:</label>
-            <input type="password" name="password" />
+            <input type="password" name="password"/>
+        </div>
+        <div>
+            <button type="submit">Login</button>
         </div>
         <div>
             <button type="submit">Login</button>

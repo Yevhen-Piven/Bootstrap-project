@@ -10,7 +10,7 @@ import service.GroupService;
 public class GroupController {
     private GroupService groupService;
 
-    @GetMapping("/groups")
+    @GetMapping("/Task3.4AddingSecurity/src/main/resources/templates/groups.html")
     public String listGroups(Model model) {
         model.addAttribute("groups", groupService.findAll());
         return "groups";

@@ -10,7 +10,7 @@ import service.CourseService;
 public class CourseController {
     private CourseService courseService;
 
-    @GetMapping("api/courses")
+    @GetMapping("/api/courses")
     public String listCourses(Model model) {
         model.addAttribute("courses", courseService.findAll());
         return "courses";

@@ -20,14 +20,14 @@ public class SecurityConfig {
                 .permitAll()
                 .requestMatchers("/admin/**")
                 .hasRole("ADMIN")
-                .anyRequest().permitAll())
+                .anyRequest()
+                .authenticated())
                 .formLogin(form -> form.loginPage("/login").defaultSuccessUrl("/home", true)
                 .permitAll())
                 .logout(logout -> logout.logoutUrl("/logout").logoutSuccessUrl("/login?logout")
                 .permitAll());
 
         return http.build();
-
     }
 
     @Bean

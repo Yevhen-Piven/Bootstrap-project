@@ -58,7 +58,7 @@ public class TimetableControllerTest {
 
         given(timetableService.findAll()).willReturn(timetables);
 
-        mvc.perform(MockMvcRequestBuilders.get("/api/timetables").contentType("application/json")).andDo(print())
-        .andExpect(MockMvcResultMatchers.status().is3xxRedirection());
+        mvc.perform(MockMvcRequestBuilders.get("/").contentType("application/json")).andDo(print())
+        .andExpect(MockMvcResultMatchers.status().isOk());
     }
 }

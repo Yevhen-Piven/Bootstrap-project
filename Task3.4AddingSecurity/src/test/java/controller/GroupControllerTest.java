@@ -43,7 +43,7 @@ class GroupControllerTest {
 
         given(groupService.findAll()).willReturn(allGroups);
 
-        mvc.perform(MockMvcRequestBuilders.get("/api/groups").contentType("application/json")).andDo(print())
-        .andExpect(MockMvcResultMatchers.status().is3xxRedirection());
+        mvc.perform(MockMvcRequestBuilders.get("/").contentType("application/json")).andDo(print())
+        .andExpect(MockMvcResultMatchers.status().isOk());
     }
 }

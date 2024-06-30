@@ -43,7 +43,7 @@ class ClassroomControllerTest {
 
         given(classroomService.findAll()).willReturn(allClassrooms);
 
-        mvc.perform(MockMvcRequestBuilders.get("/api/classrooms").contentType("application/json")).andDo(print())
-        .andExpect(MockMvcResultMatchers.status().is3xxRedirection());
+        mvc.perform(MockMvcRequestBuilders.get("/").contentType("application/json")).andDo(print())
+        .andExpect(MockMvcResultMatchers.status().isOk());
     }
 }

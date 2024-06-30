@@ -44,7 +44,7 @@ class CourseControllerTest {
 
         given(courseService.findAll()).willReturn(allCourses);
 
-        mvc.perform(MockMvcRequestBuilders.get("/api/courses").contentType("application/json")).andDo(print())
-        .andExpect(MockMvcResultMatchers.status().is3xxRedirection());
+        mvc.perform(MockMvcRequestBuilders.get("/").contentType("application/json")).andDo(print())
+        .andExpect(MockMvcResultMatchers.status().isOk());
     }
 }

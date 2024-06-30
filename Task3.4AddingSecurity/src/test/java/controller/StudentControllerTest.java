@@ -48,8 +48,8 @@ public class StudentControllerTest {
         List<Student> students = Arrays.asList(student1, student2);
         given(studentService.findAll()).willReturn(students);
 
-        mvc.perform(MockMvcRequestBuilders.get("/api/students").contentType("application/json")).andDo(print())
-                .andExpect(MockMvcResultMatchers.status().is3xxRedirection());
+        mvc.perform(MockMvcRequestBuilders.get("/").contentType("application/json")).andDo(print())
+                .andExpect(MockMvcResultMatchers.status().isOk());
 
     }
 }

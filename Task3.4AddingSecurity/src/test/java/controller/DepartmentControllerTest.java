@@ -43,7 +43,7 @@ class DepartmentControllerTest {
 
         given(departmentService.findAll()).willReturn(allDepartments);
 
-        mvc.perform(MockMvcRequestBuilders.get("/api/departments").contentType("application/json")).andDo(print())
-        .andExpect(MockMvcResultMatchers.status().is3xxRedirection());
+        mvc.perform(MockMvcRequestBuilders.get("/").contentType("application/json")).andDo(print())
+        .andExpect(MockMvcResultMatchers.status().isOk());
     }
 }

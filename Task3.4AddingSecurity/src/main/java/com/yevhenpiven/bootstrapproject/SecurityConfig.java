@@ -28,11 +28,11 @@ public class SecurityConfig {
                 .requestMatchers("/admin/**")
                 .hasRole("ADMIN")
                 .anyRequest()
-                .permitAll())
+                .authenticated())
                 .formLogin(form -> form.loginPage("/login").defaultSuccessUrl("/home", true)
                 .permitAll())
                 .logout(logout -> logout.logoutUrl("/logout").logoutSuccessUrl("/login?logout")
-                .permitAll());
+                .permitAll()).httpBasic();
 
         return http.build();
     }

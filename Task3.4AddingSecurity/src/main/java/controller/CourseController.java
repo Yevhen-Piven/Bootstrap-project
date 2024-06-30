@@ -12,7 +12,7 @@ public class CourseController {
 
     @GetMapping("/courses")
     public String listCourses(Model model) {
-        model.addAttribute("courses", courseService.findAll());
-        return "courses";
+        model.addAttribute("course", courseService.findAll());
+        return "course";
     }
 }

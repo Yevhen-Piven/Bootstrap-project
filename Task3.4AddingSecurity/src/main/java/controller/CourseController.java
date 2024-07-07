@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import service.CourseService;
 
 @Controller
-@RequestMapping("/courses")
+@RequestMapping("/templates/courses")
 public class CourseController {
     private CourseService courseService;
 

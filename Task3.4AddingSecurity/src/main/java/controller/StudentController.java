@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import service.StudentService;
 
 @Controller
-@RequestMapping("/src/main/resources/templates/students.html")
+@RequestMapping("/students")
 public class StudentController {
     private StudentService studentService;
 

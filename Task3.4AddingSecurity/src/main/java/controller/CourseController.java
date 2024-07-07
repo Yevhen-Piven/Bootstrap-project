@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import service.CourseService;
 
 @Controller
-@RequestMapping("/Task3.4AddingSecurity/src/main/resources/templates/courses.html")
+@RequestMapping("/courses")
 public class CourseController {
     private CourseService courseService;
 

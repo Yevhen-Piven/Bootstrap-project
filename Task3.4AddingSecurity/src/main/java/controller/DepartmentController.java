@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import service.DepartmentService;
 
 @Controller
-@RequestMapping("/Task3.4AddingSecurity/src/main/resources/templates/departments")
+@RequestMapping("/departments")
 public class DepartmentController {
     private DepartmentService departmentService;
 

@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import service.GroupService;
 
 @Controller
-@RequestMapping("/src/main/resources/templates/groups")
+@RequestMapping("/groups")
 public class GroupController {
     private GroupService groupService;
 

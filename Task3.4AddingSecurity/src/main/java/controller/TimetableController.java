@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import service.TimetableService;
 
 @Controller
-@RequestMapping("/templates/timetables.html")
+@RequestMapping("/timetables")
 public class TimetableController {
 
     private final TimetableService timetableService;

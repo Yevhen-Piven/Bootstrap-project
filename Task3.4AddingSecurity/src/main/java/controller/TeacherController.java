@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import service.TeacherService;
 
 @Controller
-@RequestMapping("/teachers")
+@RequestMapping("/templates/teachers")
 public class TeacherController {
     private TeacherService teacherService;
 

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import service.ClassroomService;
 
 @Controller
-@RequestMapping("/Task3.4AddingSecurity/classrooms")
+@RequestMapping("/classrooms")
 public class ClassroomController {
     private ClassroomService classroomService;
 

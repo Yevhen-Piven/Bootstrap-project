@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
@@ -36,14 +38,16 @@ class ClassroomControllerTest {
     private ClassroomService classroomService;
 
     @Test
-    public void testListClassrooms() throws Exception {
+    @WithMockUser(username = "admin", roles = { "ADMIN" })
+    public void testListClassroomsWithUserRole() throws Exception {
+
         Classroom classroom1 = new Classroom(FIRST_TEST_CLASSROOM_ID, FIRST_TEST_CLASSROOM_NAME);
         Classroom classroom2 = new Classroom(SECOND_TEST_CLASSROOM_ID, SECOND_TEST_CLASSROOM_NAME);
         List<Classroom> allClassrooms = Arrays.asList(classroom1, classroom2);
 
         given(classroomService.findAll()).willReturn(allClassrooms);
 
-        mvc.perform(MockMvcRequestBuilders.get("/").contentType("application/json")).andDo(print())
-        .andExpect(MockMvcResultMatchers.status().isOk());
+        mvc.perform(MockMvcRequestBuilders.get("/").contentType(MediaType.TEXT_HTML)).andDo(print())
+                .andExpect(MockMvcResultMatchers.status().isOk());
     }
 }

@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
@@ -36,6 +37,7 @@ class DepartmentControllerTest {
     private DepartmentService departmentService;
 
     @Test
+    @WithMockUser(username = "user", roles = {"USER"})
     public void testListDepartments() throws Exception {
         Department department1 = new Department(FIRST_TEST_DEPARTMENT_ID, FIRST_TEST_DEPARTMENT_NAME);
         Department department2 = new Department(SECOND_TEST_DEPARTMENT_ID, SECOND_TEST_DEPARTMENT_NAME);
@@ -43,7 +45,7 @@ class DepartmentControllerTest {
 
         given(departmentService.findAll()).willReturn(allDepartments);
 
-        mvc.perform(MockMvcRequestBuilders.get("/").contentType("application/json")).andDo(print())
+        mvc.perform(MockMvcRequestBuilders.get("/").contentType("text/html")).andDo(print())
         .andExpect(MockMvcResultMatchers.status().isOk());
     }
 }

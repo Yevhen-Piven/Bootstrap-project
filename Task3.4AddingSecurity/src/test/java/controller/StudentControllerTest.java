@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
@@ -40,6 +41,7 @@ public class StudentControllerTest {
     private StudentService studentService;
 
     @Test
+    @WithMockUser(username = "user", roles = {"USER"})
     public void testListStudents() throws Exception {
         Student student1 = new Student(FIRST_TEST_STUDENT_ID, FIRST_TEST_GROUP_ID, FIRST_TEST_STUDENT_NAME,
                 FIRST_TEST_STUDENT_SURNAME);
@@ -48,7 +50,7 @@ public class StudentControllerTest {
         List<Student> students = Arrays.asList(student1, student2);
         given(studentService.findAll()).willReturn(students);
 
-        mvc.perform(MockMvcRequestBuilders.get("/").contentType("application/json")).andDo(print())
+        mvc.perform(MockMvcRequestBuilders.get("/").contentType("text/html")).andDo(print())
                 .andExpect(MockMvcResultMatchers.status().isOk());
 
     }

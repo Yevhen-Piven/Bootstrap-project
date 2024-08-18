@@ -1,6 +1,5 @@
 package service;
 
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -59,10 +58,10 @@ class ClassromServiceTest {
     @Test
     public void testSave() {
         Classroom classroomTest = new Classroom(FIRS_TEST_CLASSROOM_ID, FIRSR_TEST_CLASSROOM_NAME);
-                when(classroomRepositoryMock.save(classroomTest)).thenReturn(classroomTest);
-                Classroom savedClassroom = classroomService.save(classroomTest);
-                assertNotNull(savedClassroom);
-                assertEquals(FIRSR_TEST_CLASSROOM_NAME, savedClassroom.getClassroomName());
+        when(classroomRepositoryMock.save(classroomTest)).thenReturn(classroomTest);
+        Classroom savedClassroom = classroomService.save(classroomTest);
+        assertNotNull(savedClassroom);
+        assertEquals(FIRSR_TEST_CLASSROOM_NAME, savedClassroom.getClassroomName());
     }
 
     @Test

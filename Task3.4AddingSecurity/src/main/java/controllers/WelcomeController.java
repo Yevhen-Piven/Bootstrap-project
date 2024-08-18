@@ -1,4 +1,4 @@
-package controller;
+package controllers;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -13,7 +13,7 @@ public class WelcomeController {
     @GetMapping("/")
     public String welcome(Model model) {
         model.addAttribute("message", "Welcome to Bootstrap Spring Boot");
-        return "welcome";
+        return "index";
     }
 
     @GetMapping("/login")

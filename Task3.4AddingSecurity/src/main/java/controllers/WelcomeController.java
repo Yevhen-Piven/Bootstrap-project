@@ -17,7 +17,8 @@ public class WelcomeController {
     }
 
     @GetMapping("/login")
-    public String login() {
+    public String login(Model model) {
+        model.addAttribute("message", "Welcome to Bootstrap Spring Boot");
         return "login";
     }
 }

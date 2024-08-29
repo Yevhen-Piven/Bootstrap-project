@@ -3,8 +3,8 @@ package controller;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 
-import java.sql.Date;
-import java.sql.Time;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Arrays;
 import java.util.List;
 
@@ -29,16 +29,12 @@ public class TimetableControllerTest {
 
     private static final int FIRST_TEST_TIMETABLE_ID = 1;
     private static final int SECOND_TEST_TIMETABLE_ID = 2;
-    private static final int FIRST_TEST_COURSE_ID = 1;
-    private static final int SECOND_TEST_COURSE_ID = 2;
-    private static final int FIRST_TEST_DEPARTMENT_ID = 1;
-    private static final int SECOND_TEST_DEPARTMENT_ID = 2;
-    private static final String FIRST_TEST_DATE = "2023-06-01";
-    private static final String FIRST_TEST_START_TIME = "09:00:00";
-    private static final String FIRST_TEST_END_TIME = "10:00:00";
-    private static final String SECOND_TEST_DATE = "2023-06-02";
-    private static final String SECOND_TEST_START_TIME = "10:00:00";
-    private static final String SECOND_TEST_END_TIME = "11:00:00";
+    private static final LocalDate FIRST_TEST_DATE = LocalDate.of(2023, 6, 1);
+    private static final LocalTime FIRST_TEST_START_TIME = LocalTime.of(9, 0);
+    private static final LocalTime FIRST_TEST_END_TIME = LocalTime.of(10, 0);
+    private static final LocalDate SECOND_TEST_DATE = LocalDate.of(2023, 6, 2);
+    private static final LocalTime SECOND_TEST_START_TIME = LocalTime.of(10, 0);
+    private static final LocalTime SECOND_TEST_END_TIME = LocalTime.of(11, 0);
 
     @Autowired
     private MockMvc mvc;
@@ -47,20 +43,18 @@ public class TimetableControllerTest {
     private TimetableService timetableService;
 
     @Test
-    @WithMockUser(username = "user", roles = {"USER"})
+    @WithMockUser(username = "user", roles = { "USER" })
     public void testListTimetables() throws Exception {
-       
-        Timetable timetable1 = new Timetable(FIRST_TEST_TIMETABLE_ID, Date.valueOf(FIRST_TEST_DATE),
-                Time.valueOf(FIRST_TEST_START_TIME), Time.valueOf(FIRST_TEST_END_TIME), FIRST_TEST_COURSE_ID,
-                FIRST_TEST_DEPARTMENT_ID);
-        Timetable timetable2 = new Timetable(SECOND_TEST_TIMETABLE_ID, Date.valueOf(SECOND_TEST_DATE),
-                Time.valueOf(SECOND_TEST_START_TIME), Time.valueOf(SECOND_TEST_END_TIME), SECOND_TEST_COURSE_ID,
-                SECOND_TEST_DEPARTMENT_ID);
+
+        Timetable timetable1 = new Timetable(FIRST_TEST_TIMETABLE_ID, FIRST_TEST_DATE, FIRST_TEST_START_TIME,
+                FIRST_TEST_END_TIME);
+        Timetable timetable2 = new Timetable(SECOND_TEST_TIMETABLE_ID, SECOND_TEST_DATE, SECOND_TEST_START_TIME,
+                SECOND_TEST_END_TIME);
         List<Timetable> timetables = Arrays.asList(timetable1, timetable2);
 
         given(timetableService.findAll()).willReturn(timetables);
 
         mvc.perform(MockMvcRequestBuilders.get("/").contentType("text/html")).andDo(print())
-        .andExpect(MockMvcResultMatchers.status().isOk());
+                .andExpect(MockMvcResultMatchers.status().isOk());
     }
 }

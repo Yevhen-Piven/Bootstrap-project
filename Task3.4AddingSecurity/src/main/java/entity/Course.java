@@ -21,9 +21,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "course")
-
 public class Course {
-    
+
     public Course(int courseId, String courseName, String courseDescription) {
         this.courseId = courseId;
         this.courseName = courseName;
@@ -33,17 +32,20 @@ public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int courseId;
+
     @Column(name = "course_name")
     private String courseName;
+
     @Column(name = "course_description")
     private String courseDescription;
-    @Column(name = "teacher_id")
-    private int teacherId;
+
     @ManyToOne
     @JoinColumn(name = "teacher_id")
     private Teacher teacher;
+
     @ManyToMany(mappedBy = "courses")
     private List<Student> students;
+
     @OneToMany(mappedBy = "course")
     private List<Timetable> timetables;
 }

@@ -42,10 +42,10 @@ class TeacherServiceTest {
     @Test
     public void testFindAll() {
         List<Teacher> expectedTeachers = Arrays.asList(
-                new Teacher(FIRS_TEST_TEACHER_ID, FIRS_TEST_DEPARTMENT_ID, FIRST_TEST_TEACHER_NAME,
-                        FIRST_TEST_TEACHER_SURNAME),
-                new Teacher(SECOND_TEST_TEACHER_ID, SECOND_TEST_DEPARTMENT_ID, SECOND_TEST_TEACHER_NAME,
-                        SECOND_TEST_TEACHER_SURNAME));
+                new Teacher(FIRS_TEST_TEACHER_ID, FIRST_TEST_TEACHER_NAME, FIRST_TEST_TEACHER_SURNAME,
+                        FIRS_TEST_DEPARTMENT_ID),
+                new Teacher(SECOND_TEST_TEACHER_ID, SECOND_TEST_TEACHER_NAME, SECOND_TEST_TEACHER_SURNAME,
+                        SECOND_TEST_DEPARTMENT_ID));
         when(teacherRepositoryMock.findAll()).thenReturn(expectedTeachers);
         List<Teacher> actualTeachers = teacherService.findAll();
         assertEquals(expectedTeachers.size(), actualTeachers.size());
@@ -54,8 +54,8 @@ class TeacherServiceTest {
     @Test
     public void testFindById() {
 
-        Teacher expectedTeacher = new Teacher(FIRS_TEST_TEACHER_ID, FIRS_TEST_DEPARTMENT_ID, FIRST_TEST_TEACHER_NAME,
-                FIRST_TEST_TEACHER_SURNAME);
+        Teacher expectedTeacher = new Teacher(FIRS_TEST_TEACHER_ID, FIRST_TEST_TEACHER_NAME, FIRST_TEST_TEACHER_SURNAME,
+                FIRS_TEST_DEPARTMENT_ID);
         when(teacherRepositoryMock.findById(FIRS_TEST_TEACHER_ID)).thenReturn(Optional.of(expectedTeacher));
         Optional<Teacher> actualTeacher = teacherService.findById(FIRS_TEST_TEACHER_ID);
         assertTrue(actualTeacher.isPresent());
@@ -64,8 +64,8 @@ class TeacherServiceTest {
 
     @Test
     public void testSave() {
-        Teacher teacherToSave = new Teacher(FIRS_TEST_TEACHER_ID, FIRS_TEST_DEPARTMENT_ID, FIRST_TEST_TEACHER_NAME,
-                FIRST_TEST_TEACHER_SURNAME);
+        Teacher teacherToSave = new Teacher(FIRS_TEST_TEACHER_ID, FIRST_TEST_TEACHER_NAME, FIRST_TEST_TEACHER_SURNAME,
+                FIRS_TEST_DEPARTMENT_ID);
         when(teacherRepositoryMock.save(teacherToSave)).thenReturn(teacherToSave);
         Teacher savedTeacher = teacherService.save(teacherToSave);
         assertNotNull(savedTeacher);

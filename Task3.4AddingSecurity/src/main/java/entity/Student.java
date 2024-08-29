@@ -23,9 +23,9 @@ import lombok.NoArgsConstructor;
 @Table(name = "student")
 public class Student {
 
-    public Student(int studentId, int groupId, String firstName, String lastName) {
+    public Student(int studentId, Group group, String firstName, String lastName) {
         this.studentId = studentId;
-        this.groupId = groupId;
+        this.group = group;
         this.firstName = firstName;
         this.lastName = lastName;
     }
@@ -33,16 +33,22 @@ public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int studentId;
-    @Column(name = "group_id")
-    private int groupId;
+
     @Column(name = "first_name")
     private String firstName;
+
     @Column(name = "last_name")
     private String lastName;
+
     @ManyToOne
-    @JoinColumn(name = "groupId")
+    @JoinColumn(name = "group_id")
     private Group group;
+
     @ManyToMany
-    @JoinTable(name = "Enrollment", joinColumns = @JoinColumn(name = "studentId"), inverseJoinColumns = @JoinColumn(name = "courseId"))
+    @JoinTable(
+        name = "Enrollment",
+        joinColumns = @JoinColumn(name = "studentId"),
+        inverseJoinColumns = @JoinColumn(name = "courseId")
+    )
     private List<Course> courses;
 }

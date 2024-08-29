@@ -18,6 +18,7 @@ import org.springframework.test.context.ActiveProfiles;
 
 import com.yevhenpiven.bootstrapproject.BootstrapprojectApplication;
 
+import entity.Group;
 import entity.Student;
 import repository.StudentRepository;
 
@@ -30,8 +31,8 @@ class StudentServiceTest {
     private static final int SECOND_TEST_STUDENT_ID = 2;
     private static final String SECOND_TEST_STUDENT_NAME = "Student 2";
     private static final String SECOND_TEST_STUDENT_SURNAME = "Student sur 2";
-    private static final int FIRS_TEST_GROUP_ID = 1;
-    private static final int SECOND_TEST_GROUP_ID = 2;
+    private static final Group FIRS_TEST_GROUP_ID = new Group();
+    private static final Group SECOND_TEST_GROUP_ID = new Group();
 
     @Mock
     private StudentRepository studentRepositoryMock;

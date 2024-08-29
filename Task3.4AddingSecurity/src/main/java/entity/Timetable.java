@@ -1,7 +1,7 @@
 package entity;
 
-import java.sql.Date;
-import java.sql.Time;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -18,33 +18,37 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "timetable")
+@AllArgsConstructor
 @Builder
+@Table(name = "timetable")
 public class Timetable {
 
-    public Timetable(int firsTestTimetableId, Date valueOf, Time valueOf2, Time valueOf3, int firsTestCourseId,
-            int firsTestDepartmentId) {
+    public Timetable(int timetableId, LocalDate date, LocalTime startTime, LocalTime endTime) {
+        this.timetableId = timetableId;
+        this.date = date;
+        this.startTime = startTime;
+        this.endTime = endTime;
     }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int timetableId;
+
     @Column(name = "timetable_date")
-    private Date date;
+    private LocalDate date;
+
     @Column(name = "start_time")
-    private Time startTime;
+    private LocalTime startTime;
+
     @Column(name = "end_time")
-    private Time endTime;
-    @Column(name = "course_id")
-    private int courseId;
-    @Column(name = "room_id")
-    private int roomId;
+    private LocalTime endTime;
+
     @ManyToOne
-    @JoinColumn(name = "courseId")
+    @JoinColumn(name = "course_id")
     private Course course;
+
     @ManyToOne
-    @JoinColumn(name = "roomId")
+    @JoinColumn(name = "room_id")
     private Classroom classroom;
 }

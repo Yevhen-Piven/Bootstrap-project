@@ -1,27 +1,20 @@
 package controllers;
 
-import java.util.List;
+import java.util.ArrayList;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import entity.Classroom;
-import service.ClassroomService;
 
 @Controller
-@RequestMapping("/classrooms")
 public class ClassroomController {
+    @Value("${Bootstrap Spring Boot}")
+    String appName;
 
-    @Autowired
-    private ClassroomService classroomService;
-
-    @GetMapping
+    @GetMapping("/classrooms")
     public String listClassrooms(Model model) {
-        List<Classroom> classrooms = classroomService.findAll();
-        model.addAttribute("classrooms", classrooms);
+        model.addAttribute("classrooms", new ArrayList<>());
         return "classrooms";
     }
 }

@@ -34,8 +34,8 @@ CREATE TABLE course (
 
 CREATE TABLE classroom (
     room_id INT PRIMARY KEY AUTO_INCREMENT,
-    classroom_name VARCHAR(255) NOT NULL,
-   );
+    classroom_name VARCHAR(255) NOT NULL
+);
 
 CREATE TABLE timetable (
     timetable_id INT PRIMARY KEY AUTO_INCREMENT,
@@ -46,9 +46,7 @@ CREATE TABLE timetable (
     room_id INT,
     FOREIGN KEY (course_id) REFERENCES course(course_id),
     FOREIGN KEY (room_id) REFERENCES classroom(room_id)
-     FOREIGN KEY (department_id) REFERENCES department(department_id)
 );
-
 
 CREATE TABLE student_course (
     student_id INT,

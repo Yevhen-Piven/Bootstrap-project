@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -47,7 +46,7 @@ class ClassroomControllerTest {
 
         given(classroomService.findAll()).willReturn(allClassrooms);
 
-        mvc.perform(MockMvcRequestBuilders.get("/").contentType(MediaType.TEXT_HTML)).andDo(print())
+        mvc.perform(MockMvcRequestBuilders.get("/classrooms").contentType("text/html")).andDo(print())
                 .andExpect(MockMvcResultMatchers.status().isOk());
     }
 }

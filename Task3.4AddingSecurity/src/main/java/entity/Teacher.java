@@ -22,9 +22,8 @@ import lombok.NoArgsConstructor;
 @Table(name = "teacher")
 public class Teacher {
 
-    public Teacher(int teacherId, int departmentId, String firstName, String lastName) {
+    public Teacher(int teacherId, String firstName, String lastName, int departmentId) {
         this.teacherId = teacherId;
-        this.departmentId = departmentId;
         this.firstName = firstName;
         this.lastName = lastName;
     }
@@ -32,15 +31,17 @@ public class Teacher {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int teacherId;
-    @Column(name = "department_id")
-    private int departmentId;
+
     @Column(name = "first_name")
     private String firstName;
+
     @Column(name = "last_name")
     private String lastName;
+
     @ManyToOne
     @JoinColumn(name = "department_id")
     private Department department;
+
     @OneToMany(mappedBy = "teacher")
     private List<Course> courses;
 }

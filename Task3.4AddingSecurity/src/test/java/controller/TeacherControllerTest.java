@@ -42,10 +42,10 @@ class TeacherControllerTest {
     @Test
     @WithMockUser(username = "user", roles = {"USER"})
     public void testGetAllTeachers() throws Exception {
-        Teacher teacher1 = new Teacher(FIRST_TEST_TEACHER_ID, FIRST_TEST_DEPARTMENT_ID, FIRST_TEST_TEACHER_NAME,
-                FIRST_TEST_TEACHER_SURNAME);
-        Teacher teacher2 = new Teacher(SECOND_TEST_TEACHER_ID, SECOND_TEST_DEPARTMENT_ID, SECOND_TEST_TEACHER_NAME,
-                SECOND_TEST_TEACHER_SURNAME);
+        Teacher teacher1 = new Teacher(FIRST_TEST_TEACHER_ID, FIRST_TEST_TEACHER_SURNAME, FIRST_TEST_TEACHER_NAME,
+                FIRST_TEST_DEPARTMENT_ID);
+        Teacher teacher2 = new Teacher(SECOND_TEST_TEACHER_ID, SECOND_TEST_TEACHER_SURNAME, SECOND_TEST_TEACHER_NAME,
+                SECOND_TEST_DEPARTMENT_ID);
         List<Teacher> allTeachers = Arrays.asList(teacher1, teacher2);
 
         given(teacherService.findAll()).willReturn(allTeachers);

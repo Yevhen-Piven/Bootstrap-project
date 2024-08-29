@@ -18,6 +18,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import com.yevhenpiven.bootstrapproject.BootstrapprojectApplication;
 
+import entity.Group;
 import entity.Student;
 import service.StudentService;
 
@@ -31,8 +32,8 @@ public class StudentControllerTest {
     private static final int SECOND_TEST_STUDENT_ID = 2;
     private static final String SECOND_TEST_STUDENT_NAME = "Student 2";
     private static final String SECOND_TEST_STUDENT_SURNAME = "Student sur 2";
-    private static final int FIRST_TEST_GROUP_ID = 1;
-    private static final int SECOND_TEST_GROUP_ID = 2;
+    private static final Group FIRST_TEST_GROUP_ID = new Group();
+    private static final Group SECOND_TEST_GROUP_ID = new Group();
 
     @Autowired
     private MockMvc mvc;

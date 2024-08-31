@@ -52,8 +52,10 @@ public class SecurityConfig implements WebMvcConfigurer {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/");
-    }
+        
+        registry.addResourceHandler("/resources/**")
+                .addResourceLocations("classpath:/templates/")
+                .setCachePeriod(3600);}
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {

@@ -19,9 +19,8 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import com.yevhenpiven.bootstrapproject.BootstrapprojectApplication;
-
-import entity.Timetable;
-import service.TimetableService;
+import com.yevhenpiven.bootstrapproject.controller.service.TimetableService;
+import com.yevhenpiven.bootstrapproject.entity.Timetable;
 
 @SpringBootTest(classes = BootstrapprojectApplication.class)
 @AutoConfigureMockMvc
@@ -54,7 +53,7 @@ public class TimetableControllerTest {
 
         given(timetableService.findAll()).willReturn(timetables);
 
-        mvc.perform(MockMvcRequestBuilders.get("/").contentType("text/html")).andDo(print())
+        mvc.perform(MockMvcRequestBuilders.get("/timetables").contentType("text/html")).andDo(print())
                 .andExpect(MockMvcResultMatchers.status().isOk());
     }
 }

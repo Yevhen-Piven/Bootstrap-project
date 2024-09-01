@@ -17,9 +17,8 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import com.yevhenpiven.bootstrapproject.BootstrapprojectApplication;
-
-import entity.Teacher;
-import service.TeacherService;
+import com.yevhenpiven.bootstrapproject.controller.service.TeacherService;
+import com.yevhenpiven.bootstrapproject.entity.Teacher;
 
 @SpringBootTest(classes = BootstrapprojectApplication.class)
 @AutoConfigureMockMvc
@@ -50,7 +49,7 @@ class TeacherControllerTest {
 
         given(teacherService.findAll()).willReturn(allTeachers);
 
-        mvc.perform(MockMvcRequestBuilders.get("/").contentType("text/html")).andDo(print())
+        mvc.perform(MockMvcRequestBuilders.get("/teachers").contentType("text/html")).andDo(print())
                 .andExpect(MockMvcResultMatchers.status().isOk());
     }
 

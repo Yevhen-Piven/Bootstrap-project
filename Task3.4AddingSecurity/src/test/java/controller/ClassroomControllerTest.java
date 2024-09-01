@@ -17,9 +17,8 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import com.yevhenpiven.bootstrapproject.BootstrapprojectApplication;
-
-import entity.Classroom;
-import service.ClassroomService;
+import com.yevhenpiven.bootstrapproject.controller.service.ClassroomService;
+import com.yevhenpiven.bootstrapproject.entity.Classroom;
 
 @SpringBootTest(classes = BootstrapprojectApplication.class)
 @AutoConfigureMockMvc

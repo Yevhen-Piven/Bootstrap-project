@@ -1,4 +1,4 @@
-package entity;
+package com.yevhenpiven.bootstrapproject.entity;
 
 import java.util.List;
 
@@ -8,9 +8,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,19 +19,18 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "student")
-public class Student {
+@Table(name = "teacher")
+public class Teacher {
 
-    public Student(int studentId, Group group, String firstName, String lastName) {
-        this.studentId = studentId;
-        this.group = group;
+    public Teacher(int teacherId, String firstName, String lastName, int departmentId) {
+        this.teacherId = teacherId;
         this.firstName = firstName;
         this.lastName = lastName;
     }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int studentId;
+    private int teacherId;
 
     @Column(name = "first_name")
     private String firstName;
@@ -41,14 +39,9 @@ public class Student {
     private String lastName;
 
     @ManyToOne
-    @JoinColumn(name = "group_id")
-    private Group group;
+    @JoinColumn(name = "department_id")
+    private Department department;
 
-    @ManyToMany
-    @JoinTable(
-        name = "Enrollment",
-        joinColumns = @JoinColumn(name = "studentId"),
-        inverseJoinColumns = @JoinColumn(name = "courseId")
-    )
+    @OneToMany(mappedBy = "teacher")
     private List<Course> courses;
 }

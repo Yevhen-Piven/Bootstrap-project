@@ -1,4 +1,4 @@
-package service;
+package com.yevhenpiven.bootstrapproject.controller.service;
 
 import java.util.List;
 import java.util.Optional;
@@ -6,9 +6,10 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import entity.Classroom;
+import com.yevhenpiven.bootstrapproject.entity.Classroom;
+import com.yevhenpiven.bootstrapproject.repository.ClassroomRepository;
+
 import lombok.RequiredArgsConstructor;
-import repository.ClassroomRepository;
 
 @Service
 @RequiredArgsConstructor

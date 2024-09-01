@@ -1,4 +1,4 @@
-package entity;
+package com.yevhenpiven.bootstrapproject.entity;
 
 import java.util.List;
 

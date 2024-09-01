@@ -17,9 +17,8 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import com.yevhenpiven.bootstrapproject.BootstrapprojectApplication;
-
-import entity.Department;
-import service.DepartmentService;
+import com.yevhenpiven.bootstrapproject.controller.service.DepartmentService;
+import com.yevhenpiven.bootstrapproject.entity.Department;
 
 @SpringBootTest(classes = BootstrapprojectApplication.class)
 @AutoConfigureMockMvc
@@ -45,7 +44,7 @@ class DepartmentControllerTest {
 
         given(departmentService.findAll()).willReturn(allDepartments);
 
-        mvc.perform(MockMvcRequestBuilders.get("/").contentType("text/html")).andDo(print())
+        mvc.perform(MockMvcRequestBuilders.get("/departments").contentType("text/html")).andDo(print())
         .andExpect(MockMvcResultMatchers.status().isOk());
     }
 }

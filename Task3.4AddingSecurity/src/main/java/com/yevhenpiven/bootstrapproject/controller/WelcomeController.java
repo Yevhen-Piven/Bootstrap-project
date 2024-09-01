@@ -1,4 +1,4 @@
-package controller;
+package com.yevhenpiven.bootstrapproject.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,10 +12,4 @@ public class WelcomeController {
         model.addAttribute("message", "Welcome to Bootstrap Spring Boot");
         return "index";
     }
-
-    @GetMapping("/login")
-    public String login(Model model) {
-        model.addAttribute("message", "Welcome to Bootstrap Spring Boot");
-        return "login";
-    }
-}
+ }

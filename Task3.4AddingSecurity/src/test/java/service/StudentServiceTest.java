@@ -17,10 +17,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 
 import com.yevhenpiven.bootstrapproject.BootstrapprojectApplication;
-
-import entity.Group;
-import entity.Student;
-import repository.StudentRepository;
+import com.yevhenpiven.bootstrapproject.controller.service.StudentService;
+import com.yevhenpiven.bootstrapproject.entity.Group;
+import com.yevhenpiven.bootstrapproject.entity.Student;
+import com.yevhenpiven.bootstrapproject.repository.StudentRepository;
 
 @SpringBootTest(classes = BootstrapprojectApplication.class)
 @ActiveProfiles("test")

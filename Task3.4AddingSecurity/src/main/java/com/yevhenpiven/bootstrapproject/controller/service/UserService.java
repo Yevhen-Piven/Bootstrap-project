@@ -1,14 +1,14 @@
-package service;
+package com.yevhenpiven.bootstrapproject.controller.service;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import entity.Role;
-import entity.User;
-import repository.RoleRepository;
-import repository.UserRepository;
+import com.yevhenpiven.bootstrapproject.entity.Role;
+import com.yevhenpiven.bootstrapproject.entity.User;
+import com.yevhenpiven.bootstrapproject.repository.RoleRepository;
+import com.yevhenpiven.bootstrapproject.repository.UserRepository;
 
 public class UserService {
 

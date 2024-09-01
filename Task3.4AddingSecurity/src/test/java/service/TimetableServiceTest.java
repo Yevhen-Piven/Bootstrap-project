@@ -21,9 +21,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 
 import com.yevhenpiven.bootstrapproject.BootstrapprojectApplication;
-
-import entity.Timetable;
-import repository.TimetableRepository;
+import com.yevhenpiven.bootstrapproject.controller.service.TimetableService;
+import com.yevhenpiven.bootstrapproject.entity.Timetable;
+import com.yevhenpiven.bootstrapproject.repository.TimetableRepository;
 
 @SpringBootTest(classes = BootstrapprojectApplication.class)
 @ActiveProfiles("test")

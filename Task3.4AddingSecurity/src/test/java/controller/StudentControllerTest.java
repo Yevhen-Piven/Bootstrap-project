@@ -17,10 +17,9 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import com.yevhenpiven.bootstrapproject.BootstrapprojectApplication;
-
-import entity.Group;
-import entity.Student;
-import service.StudentService;
+import com.yevhenpiven.bootstrapproject.controller.service.StudentService;
+import com.yevhenpiven.bootstrapproject.entity.Group;
+import com.yevhenpiven.bootstrapproject.entity.Student;
 
 @SpringBootTest(classes = BootstrapprojectApplication.class)
 @AutoConfigureMockMvc
@@ -51,7 +50,7 @@ public class StudentControllerTest {
         List<Student> students = Arrays.asList(student1, student2);
         given(studentService.findAll()).willReturn(students);
 
-        mvc.perform(MockMvcRequestBuilders.get("/").contentType("text/html")).andDo(print())
+        mvc.perform(MockMvcRequestBuilders.get("/students").contentType("text/html")).andDo(print())
                 .andExpect(MockMvcResultMatchers.status().isOk());
 
     }

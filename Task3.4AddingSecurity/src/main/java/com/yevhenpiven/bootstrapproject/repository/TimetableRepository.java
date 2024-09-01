@@ -1,4 +1,4 @@
-package repository;
+package com.yevhenpiven.bootstrapproject.repository;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -8,8 +8,9 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import com.yevhenpiven.bootstrapproject.entity.Timetable;
+
 import dto.TimetableDTO;
-import entity.Timetable;
 
 @Repository
 public interface TimetableRepository extends JpaRepository<Timetable, Integer> {

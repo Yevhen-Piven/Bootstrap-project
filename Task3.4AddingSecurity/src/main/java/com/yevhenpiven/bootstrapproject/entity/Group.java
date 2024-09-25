@@ -20,8 +20,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "groups")
 public class Group {
 
-    public Group(int groupId, String groupName) {
-        this.groupId = groupId;
+    public Group( String groupName) {
         this.groupName = groupName;
     }
 

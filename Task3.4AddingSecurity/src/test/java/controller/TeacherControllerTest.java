@@ -23,10 +23,8 @@ import com.yevhenpiven.bootstrapproject.service.TeacherService;
 @SpringBootTest(classes = BootstrapprojectApplication.class)
 @AutoConfigureMockMvc
 class TeacherControllerTest {
-    private static final int FIRST_TEST_TEACHER_ID = 1;
     private static final String FIRST_TEST_TEACHER_SURNAME = "Teacher sur 1";
     private static final String FIRST_TEST_TEACHER_NAME = "Teacher 1";
-    private static final int SECOND_TEST_TEACHER_ID = 2;
     private static final String SECOND_TEST_TEACHER_NAME = "Teacher 2";
     private static final String SECOND_TEST_TEACHER_SURNAME = "Teacher sur 2";
     private static final int FIRST_TEST_DEPARTMENT_ID = 1;
@@ -39,11 +37,10 @@ class TeacherControllerTest {
     private TeacherService teacherService;
 
     @Test
-    @WithMockUser(username = "user", roles = {"USER"})
+    @WithMockUser(username = "user", roles = { "USER" })
     public void testGetAllTeachers() throws Exception {
-        Teacher teacher1 = new Teacher(FIRST_TEST_TEACHER_ID, FIRST_TEST_TEACHER_SURNAME, FIRST_TEST_TEACHER_NAME,
-                FIRST_TEST_DEPARTMENT_ID);
-        Teacher teacher2 = new Teacher(SECOND_TEST_TEACHER_ID, SECOND_TEST_TEACHER_SURNAME, SECOND_TEST_TEACHER_NAME,
+        Teacher teacher1 = new Teacher(FIRST_TEST_TEACHER_SURNAME, FIRST_TEST_TEACHER_NAME, FIRST_TEST_DEPARTMENT_ID);
+        Teacher teacher2 = new Teacher(SECOND_TEST_TEACHER_SURNAME, SECOND_TEST_TEACHER_NAME,
                 SECOND_TEST_DEPARTMENT_ID);
         List<Teacher> allTeachers = Arrays.asList(teacher1, teacher2);
 

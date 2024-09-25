@@ -5,9 +5,9 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>3.3.1-SNAPSHOT</version>
-        <relativePath /> <!-- lookup parent from repository -->
+        <relativePath /> 
     </parent>
-    <groupId>com.example</groupId>
+    <groupId>ua.foxminded.yevhenpiven</groupId>
     <artifactId>bootstrapproject</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>bootstrapproject</name>
@@ -33,21 +33,14 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.flywaydb</groupId>
-            <artifactId>flyway-core</artifactId>
-            <version>10.14.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>1.18.20</version>
-            <scope>provided</scope>
-        </dependency>
+                <dependency>
+        <groupId>org.projectlombok</groupId>
+        <artifactId>lombok</artifactId>
+        <scope>provided</scope>
+    </dependency>
         <dependency>
     <groupId>com.h2database</groupId>
     <artifactId>h2</artifactId>
-    <version>2.2.220</version>
     <scope>runtime</scope>
 </dependency>
         <dependency>
@@ -65,7 +58,6 @@
             <artifactId>popper.js</artifactId>
             <version>2.9.3</version>
         </dependency>
-        <!-- Test dependencies -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>

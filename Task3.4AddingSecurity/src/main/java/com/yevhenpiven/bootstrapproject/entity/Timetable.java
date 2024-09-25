@@ -24,8 +24,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "timetable")
 public class Timetable {
 
-    public Timetable(int timetableId, LocalDate date, LocalTime startTime, LocalTime endTime) {
-        this.timetableId = timetableId;
+    public Timetable( LocalDate date, LocalTime startTime, LocalTime endTime) {
         this.date = date;
         this.startTime = startTime;
         this.endTime = endTime;

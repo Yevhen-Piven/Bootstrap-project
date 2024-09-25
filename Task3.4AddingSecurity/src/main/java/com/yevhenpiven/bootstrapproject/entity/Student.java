@@ -23,8 +23,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "student")
 public class Student {
 
-    public Student(int studentId, Group group, String firstName, String lastName) {
-        this.studentId = studentId;
+    public Student( Group group, String firstName, String lastName) {
         this.group = group;
         this.firstName = firstName;
         this.lastName = lastName;

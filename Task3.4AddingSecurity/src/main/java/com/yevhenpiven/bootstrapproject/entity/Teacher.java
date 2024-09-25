@@ -22,8 +22,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "teacher")
 public class Teacher {
 
-    public Teacher(int teacherId, String firstName, String lastName, int departmentId) {
-        this.teacherId = teacherId;
+    public Teacher( String firstName, String lastName, int departmentId) {
         this.firstName = firstName;
         this.lastName = lastName;
     }

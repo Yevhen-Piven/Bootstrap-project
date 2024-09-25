@@ -29,8 +29,7 @@ public class Classroom {
     public Classroom() {
     }
 
-    public Classroom(int classroomId, String classroomName) {
-        this.classroomId = classroomId;
+    public Classroom( String classroomName) {
         this.classroomName = classroomName;
     }
 

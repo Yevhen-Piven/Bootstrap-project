@@ -25,10 +25,8 @@ import com.yevhenpiven.bootstrapproject.service.CourseService;
 class CourseControllerTest {
     private static final String FIRST_TEST_COURSE_NAME = "Course 1";
     private static final String FIRST_TEST_COURSE_DESCRIPTION = "Descrription 1";
-    private static final int FIRS_TEST_COURSE_ID = 1;
     private static final String SECOND_TEST_COURSE_NAME = "Course 2";
     private static final String SECOND_TEST_COURSE_DESCRIPTION = "Descrription 2";
-    private static final int SECOND_TEST_COURSE_ID = 2;
 
     @Autowired
     private MockMvc mvc;
@@ -37,15 +35,15 @@ class CourseControllerTest {
     private CourseService courseService;
 
     @Test
-    @WithMockUser(username = "user", roles = {"USER"})
+    @WithMockUser(username = "user", roles = { "USER" })
     public void testListCourses() throws Exception {
-        Course course1 = new Course(FIRS_TEST_COURSE_ID, FIRST_TEST_COURSE_NAME,FIRST_TEST_COURSE_DESCRIPTION);
-        Course course2 = new Course(SECOND_TEST_COURSE_ID, SECOND_TEST_COURSE_NAME,SECOND_TEST_COURSE_DESCRIPTION);
+        Course course1 = new Course(FIRST_TEST_COURSE_NAME, FIRST_TEST_COURSE_DESCRIPTION);
+        Course course2 = new Course(SECOND_TEST_COURSE_NAME, SECOND_TEST_COURSE_DESCRIPTION);
         List<Course> allCourses = Arrays.asList(course1, course2);
 
         given(courseService.findAll()).willReturn(allCourses);
 
         mvc.perform(MockMvcRequestBuilders.get("/courses").contentType("text/html")).andDo(print())
-        .andExpect(MockMvcResultMatchers.status().isOk());
+                .andExpect(MockMvcResultMatchers.status().isOk());
     }
 }

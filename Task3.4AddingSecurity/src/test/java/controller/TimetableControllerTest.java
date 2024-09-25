@@ -26,8 +26,6 @@ import com.yevhenpiven.bootstrapproject.service.TimetableService;
 @AutoConfigureMockMvc
 public class TimetableControllerTest {
 
-    private static final int FIRST_TEST_TIMETABLE_ID = 1;
-    private static final int SECOND_TEST_TIMETABLE_ID = 2;
     private static final LocalDate FIRST_TEST_DATE = LocalDate.of(2023, 6, 1);
     private static final LocalTime FIRST_TEST_START_TIME = LocalTime.of(9, 0);
     private static final LocalTime FIRST_TEST_END_TIME = LocalTime.of(10, 0);
@@ -45,10 +43,8 @@ public class TimetableControllerTest {
     @WithMockUser(username = "user", roles = { "USER" })
     public void testListTimetables() throws Exception {
 
-        Timetable timetable1 = new Timetable(FIRST_TEST_TIMETABLE_ID, FIRST_TEST_DATE, FIRST_TEST_START_TIME,
-                FIRST_TEST_END_TIME);
-        Timetable timetable2 = new Timetable(SECOND_TEST_TIMETABLE_ID, SECOND_TEST_DATE, SECOND_TEST_START_TIME,
-                SECOND_TEST_END_TIME);
+        Timetable timetable1 = new Timetable(FIRST_TEST_DATE, FIRST_TEST_START_TIME, FIRST_TEST_END_TIME);
+        Timetable timetable2 = new Timetable(SECOND_TEST_DATE, SECOND_TEST_START_TIME, SECOND_TEST_END_TIME);
         List<Timetable> timetables = Arrays.asList(timetable1, timetable2);
 
         given(timetableService.findAll()).willReturn(timetables);

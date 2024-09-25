@@ -24,9 +24,7 @@ import com.yevhenpiven.bootstrapproject.service.DepartmentService;
 @AutoConfigureMockMvc
 class DepartmentControllerTest {
 
-    private static final int FIRST_TEST_DEPARTMENT_ID = 1;
     private static final String FIRST_TEST_DEPARTMENT_NAME = "Department 1";
-    private static final int SECOND_TEST_DEPARTMENT_ID = 2;
     private static final String SECOND_TEST_DEPARTMENT_NAME = "Department 2";
 
     @Autowired
@@ -36,15 +34,15 @@ class DepartmentControllerTest {
     private DepartmentService departmentService;
 
     @Test
-    @WithMockUser(username = "user", roles = {"USER"})
+    @WithMockUser(username = "user", roles = { "USER" })
     public void testListDepartments() throws Exception {
-        Department department1 = new Department(FIRST_TEST_DEPARTMENT_ID, FIRST_TEST_DEPARTMENT_NAME);
-        Department department2 = new Department(SECOND_TEST_DEPARTMENT_ID, SECOND_TEST_DEPARTMENT_NAME);
+        Department department1 = new Department(FIRST_TEST_DEPARTMENT_NAME);
+        Department department2 = new Department(SECOND_TEST_DEPARTMENT_NAME);
         List<Department> allDepartments = Arrays.asList(department1, department2);
 
         given(departmentService.findAll()).willReturn(allDepartments);
 
         mvc.perform(MockMvcRequestBuilders.get("/departments").contentType("text/html")).andDo(print())
-        .andExpect(MockMvcResultMatchers.status().isOk());
+                .andExpect(MockMvcResultMatchers.status().isOk());
     }
 }

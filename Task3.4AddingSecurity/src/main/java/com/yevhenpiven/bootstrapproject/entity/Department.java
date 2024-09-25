@@ -20,8 +20,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "department")
 public class Department {
 
-    public Department(int departmentId, String departmentName) {
-        this.departmentId = departmentId;
+    public Department( String departmentName) {
         this.departmentName = departmentName;
     }
 

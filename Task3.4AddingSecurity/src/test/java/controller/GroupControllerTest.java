@@ -24,9 +24,7 @@ import com.yevhenpiven.bootstrapproject.service.GroupService;
 @AutoConfigureMockMvc
 class GroupControllerTest {
 
-    private static final int FIRST_TEST_GROUP_ID = 1;
     private static final String FIRST_TEST_GROUP_NAME = "Group 1";
-    private static final int SECOND_TEST_GROUP_ID = 2;
     private static final String SECOND_TEST_GROUP_NAME = "Group 2";
 
     @Autowired
@@ -36,15 +34,15 @@ class GroupControllerTest {
     private GroupService groupService;
 
     @Test
-    @WithMockUser(username = "user", roles = {"USER"})
+    @WithMockUser(username = "user", roles = { "USER" })
     public void testListGroups() throws Exception {
-        Group group1 = new Group(FIRST_TEST_GROUP_ID, FIRST_TEST_GROUP_NAME);
-        Group group2 = new Group(SECOND_TEST_GROUP_ID, SECOND_TEST_GROUP_NAME);
+        Group group1 = new Group(FIRST_TEST_GROUP_NAME);
+        Group group2 = new Group(SECOND_TEST_GROUP_NAME);
         List<Group> allGroups = Arrays.asList(group1, group2);
 
         given(groupService.findAll()).willReturn(allGroups);
 
         mvc.perform(MockMvcRequestBuilders.get("/groups").contentType("text/html")).andDo(print())
-        .andExpect(MockMvcResultMatchers.status().isOk());
+                .andExpect(MockMvcResultMatchers.status().isOk());
     }
 }

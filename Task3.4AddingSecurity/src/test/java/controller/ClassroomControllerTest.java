@@ -24,9 +24,7 @@ import com.yevhenpiven.bootstrapproject.service.ClassroomService;
 @AutoConfigureMockMvc
 class ClassroomControllerTest {
 
-    private static final int FIRST_TEST_CLASSROOM_ID = 1;
     private static final String FIRST_TEST_CLASSROOM_NAME = "Classroom 1";
-    private static final int SECOND_TEST_CLASSROOM_ID = 2;
     private static final String SECOND_TEST_CLASSROOM_NAME = "Classroom 2";
 
     @Autowired
@@ -37,10 +35,10 @@ class ClassroomControllerTest {
 
     @Test
     @WithMockUser(username = "admin", roles = { "ADMIN" })
-    public void testListClassroomsWithUserRole() throws Exception {
+    void testListClassroomsWithUserRole() throws Exception {
 
-        Classroom classroom1 = new Classroom(FIRST_TEST_CLASSROOM_ID, FIRST_TEST_CLASSROOM_NAME);
-        Classroom classroom2 = new Classroom(SECOND_TEST_CLASSROOM_ID, SECOND_TEST_CLASSROOM_NAME);
+        Classroom classroom1 = new Classroom(FIRST_TEST_CLASSROOM_NAME);
+        Classroom classroom2 = new Classroom(SECOND_TEST_CLASSROOM_NAME);
         List<Classroom> allClassrooms = Arrays.asList(classroom1, classroom2);
 
         given(classroomService.findAll()).willReturn(allClassrooms);

@@ -17,9 +17,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 
 import com.yevhenpiven.bootstrapproject.BootstrapprojectApplication;
-import com.yevhenpiven.bootstrapproject.controller.service.TeacherService;
 import com.yevhenpiven.bootstrapproject.entity.Teacher;
 import com.yevhenpiven.bootstrapproject.repository.TeacherRepository;
+import com.yevhenpiven.bootstrapproject.service.TeacherService;
 
 @SpringBootTest(classes = BootstrapprojectApplication.class)
 @ActiveProfiles("test")

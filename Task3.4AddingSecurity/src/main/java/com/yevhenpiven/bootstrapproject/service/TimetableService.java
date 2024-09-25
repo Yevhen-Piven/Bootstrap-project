@@ -1,4 +1,4 @@
-package com.yevhenpiven.bootstrapproject.controller.service;
+package com.yevhenpiven.bootstrapproject.service;
 
 import java.time.LocalDate;
 import java.util.List;

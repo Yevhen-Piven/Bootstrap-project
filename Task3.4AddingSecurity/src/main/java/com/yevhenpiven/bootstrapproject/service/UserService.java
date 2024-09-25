@@ -1,4 +1,4 @@
-package com.yevhenpiven.bootstrapproject.controller.service;
+package com.yevhenpiven.bootstrapproject.service;
 
 import java.util.List;
 

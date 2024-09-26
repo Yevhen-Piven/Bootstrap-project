@@ -35,7 +35,7 @@ class GroupControllerTest {
 
     @Test
     @WithMockUser(username = "user", roles = { "USER" })
-    public void testListGroups() throws Exception {
+    void testListGroups() throws Exception {
         Group group1 = new Group(FIRST_TEST_GROUP_NAME);
         Group group2 = new Group(SECOND_TEST_GROUP_NAME);
         List<Group> allGroups = Arrays.asList(group1, group2);

@@ -36,7 +36,7 @@ class CourseControllerTest {
 
     @Test
     @WithMockUser(username = "user", roles = { "USER" })
-    public void testListCourses() throws Exception {
+    void testListCourses() throws Exception {
         Course course1 = new Course(FIRST_TEST_COURSE_NAME, FIRST_TEST_COURSE_DESCRIPTION);
         Course course2 = new Course(SECOND_TEST_COURSE_NAME, SECOND_TEST_COURSE_DESCRIPTION);
         List<Course> allCourses = Arrays.asList(course1, course2);

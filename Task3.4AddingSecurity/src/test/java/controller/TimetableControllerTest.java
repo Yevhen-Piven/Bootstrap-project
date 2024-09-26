@@ -24,7 +24,7 @@ import com.yevhenpiven.bootstrapproject.service.TimetableService;
 
 @SpringBootTest(classes = BootstrapprojectApplication.class)
 @AutoConfigureMockMvc
-public class TimetableControllerTest {
+class TimetableControllerTest {
 
     private static final LocalDate FIRST_TEST_DATE = LocalDate.of(2023, 6, 1);
     private static final LocalTime FIRST_TEST_START_TIME = LocalTime.of(9, 0);
@@ -41,7 +41,7 @@ public class TimetableControllerTest {
 
     @Test
     @WithMockUser(username = "user", roles = { "USER" })
-    public void testListTimetables() throws Exception {
+    void testListTimetables() throws Exception {
 
         Timetable timetable1 = new Timetable(FIRST_TEST_DATE, FIRST_TEST_START_TIME, FIRST_TEST_END_TIME);
         Timetable timetable2 = new Timetable(SECOND_TEST_DATE, SECOND_TEST_START_TIME, SECOND_TEST_END_TIME);

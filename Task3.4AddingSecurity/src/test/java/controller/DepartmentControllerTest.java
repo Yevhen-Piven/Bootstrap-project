@@ -35,7 +35,7 @@ class DepartmentControllerTest {
 
     @Test
     @WithMockUser(username = "user", roles = { "USER" })
-    public void testListDepartments() throws Exception {
+    void testListDepartments() throws Exception {
         Department department1 = new Department(FIRST_TEST_DEPARTMENT_NAME);
         Department department2 = new Department(SECOND_TEST_DEPARTMENT_NAME);
         List<Department> allDepartments = Arrays.asList(department1, department2);

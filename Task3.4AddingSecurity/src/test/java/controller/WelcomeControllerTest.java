@@ -22,7 +22,7 @@ class WelcomeControllerTest {
 
     @Test
     @WithMockUser(username = "user", roles = {"USER"})
-    public void testWelcome() throws Exception {
+    void testWelcome() throws Exception {
         mvc.perform(MockMvcRequestBuilders.get("/").contentType("text/html")).andDo(print())
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.view().name("index"));

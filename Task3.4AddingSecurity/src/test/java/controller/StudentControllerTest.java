@@ -40,7 +40,7 @@ public class StudentControllerTest {
 
     @Test
     @WithMockUser(username = "user", roles = { "USER" })
-    public void testListStudents() throws Exception {
+    void testListStudents() throws Exception {
         Student student1 = new Student(FIRST_TEST_GROUP_ID, FIRST_TEST_STUDENT_NAME, FIRST_TEST_STUDENT_SURNAME);
         Student student2 = new Student(SECOND_TEST_GROUP_ID, SECOND_TEST_STUDENT_NAME, SECOND_TEST_STUDENT_SURNAME);
         List<Student> students = Arrays.asList(student1, student2);

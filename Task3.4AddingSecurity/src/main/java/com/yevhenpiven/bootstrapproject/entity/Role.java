@@ -17,15 +17,14 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "roles")
-
+@Table(name = "role")
 public class Role {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int roleId;
 
-    @Column(name = "role_name")
+    @Column(name = "role_name", nullable = false, unique = true)
     private String roleName;
 
     @ManyToMany(mappedBy = "roles")

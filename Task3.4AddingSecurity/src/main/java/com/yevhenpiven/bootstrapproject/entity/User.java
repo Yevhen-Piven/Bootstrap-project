@@ -26,10 +26,10 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int userId;
 
-    @Column(name = "username")
+    @Column(unique = true, nullable = false)
     private String username;
 
-    @Column(name = "password")
+    @Column(nullable = false)
     private String password;
 
     @ManyToMany(fetch = FetchType.EAGER)

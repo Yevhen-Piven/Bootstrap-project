@@ -16,10 +16,19 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.authorizeHttpRequests(
-                authorize -> authorize.requestMatchers("/**").permitAll().anyRequest().authenticated())
-                .formLogin(formLogin -> formLogin.loginPage("/login").permitAll()).logout(logout -> logout.permitAll())
-                .csrf(csrf -> csrf.disable());
+        http.authorizeHttpRequests(authorize -> authorize
+                .requestMatchers("/", "/login").permitAll()
+                .requestMatchers("/admin/**").hasRole("ADMIN")
+                .requestMatchers("/student/**").hasRole("STUDENT")
+                .requestMatchers("/teacher/**").hasRole("TEACHER")
+                .requestMatchers("/staff/**").hasRole("STAFF")
+                .anyRequest().authenticated())
+            .formLogin(formLogin -> formLogin
+                .loginPage("/login")
+                .permitAll())
+            .logout(logout -> logout
+                .permitAll())
+            .csrf(csrf -> csrf.disable()); 
 
         return http.build();
     }
@@ -28,14 +37,22 @@ public class SecurityConfig {
     public UserDetailsService userDetailsService() {
         var userDetailsService = new InMemoryUserDetailsManager();
 
-        var user = org.springframework.security.core.userdetails.User.withUsername("user")
-                .password(passwordEncoder().encode("password")).roles("USER").build();
-
         var admin = org.springframework.security.core.userdetails.User.withUsername("admin")
                 .password(passwordEncoder().encode("admin")).roles("ADMIN").build();
 
-        userDetailsService.createUser(user);
+        var student = org.springframework.security.core.userdetails.User.withUsername("student")
+                .password(passwordEncoder().encode("student")).roles("STUDENT").build();
+
+        var teacher = org.springframework.security.core.userdetails.User.withUsername("teacher")
+                .password(passwordEncoder().encode("teacher")).roles("TEACHER").build();
+
+        var staff = org.springframework.security.core.userdetails.User.withUsername("staff")
+                .password(passwordEncoder().encode("staff")).roles("STAFF").build();
+
         userDetailsService.createUser(admin);
+        userDetailsService.createUser(student);
+        userDetailsService.createUser(teacher);
+        userDetailsService.createUser(staff);
 
         return userDetailsService;
     }

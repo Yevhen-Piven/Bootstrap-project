@@ -1,4 +1,4 @@
-package constants;
+package com.yevhenpiven.bootstrapproject.constants;
 
 public class Role {
     public static final String ROLE_STUDENT = "ROLE_STUDENT";

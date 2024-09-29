@@ -34,12 +34,13 @@ public class TeacherController {
         Teacher teacher = teacherService.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid teacher Id: " + id));
         model.addAttribute("teacher", teacher);
-        return "teacher_edit";
+        return "teacher_edit"; 
     }
 
     @PostMapping("/edit/{id}")
     public String updateTeacher(@PathVariable("id") int id, @ModelAttribute("teacher") Teacher teacher) {
+        teacher.setTeacherId(id); 
         teacherService.save(teacher);
-        return "redirect:/teacher";
+        return "redirect:/teachers";
     }
 }

@@ -1,6 +1,9 @@
 package controller;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 
 import java.util.Arrays;
@@ -23,7 +26,7 @@ import com.yevhenpiven.bootstrapproject.service.StudentService;
 
 @SpringBootTest(classes = BootstrapprojectApplication.class)
 @AutoConfigureMockMvc
-public class StudentControllerTest {
+class StudentControllerTest {
 
     private static final String FIRST_TEST_STUDENT_SURNAME = "Student sur 1";
     private static final String FIRST_TEST_STUDENT_NAME = "Student 1";
@@ -46,8 +49,15 @@ public class StudentControllerTest {
         List<Student> students = Arrays.asList(student1, student2);
         given(studentService.findAll()).willReturn(students);
 
-        mvc.perform(MockMvcRequestBuilders.get("/students").contentType("text/html")).andDo(print())
-                .andExpect(MockMvcResultMatchers.status().isOk());
+        String responseContent = mvc.perform(MockMvcRequestBuilders.get("/students").contentType("text/html"))
+                .andDo(print()).andExpect(MockMvcResultMatchers.status().isOk()).andReturn().getResponse()
+                .getContentAsString();
 
+        assertTrue(responseContent.contains(FIRST_TEST_STUDENT_NAME));
+        assertTrue(responseContent.contains(SECOND_TEST_STUDENT_NAME));
+        assertTrue(responseContent.contains(FIRST_TEST_STUDENT_SURNAME));
+        assertTrue(responseContent.contains(SECOND_TEST_STUDENT_SURNAME));
+
+        verify(studentService, times(1)).findAll();
     }
 }

@@ -1,6 +1,9 @@
 package controller;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 
 import java.util.Arrays;
@@ -24,9 +27,9 @@ import com.yevhenpiven.bootstrapproject.service.CourseService;
 @AutoConfigureMockMvc
 class CourseControllerTest {
     private static final String FIRST_TEST_COURSE_NAME = "Course 1";
-    private static final String FIRST_TEST_COURSE_DESCRIPTION = "Descrription 1";
+    private static final String FIRST_TEST_COURSE_DESCRIPTION = "Description 1";
     private static final String SECOND_TEST_COURSE_NAME = "Course 2";
-    private static final String SECOND_TEST_COURSE_DESCRIPTION = "Descrription 2";
+    private static final String SECOND_TEST_COURSE_DESCRIPTION = "Description 2";
 
     @Autowired
     private MockMvc mvc;
@@ -43,7 +46,12 @@ class CourseControllerTest {
 
         given(courseService.findAll()).willReturn(allCourses);
 
-        mvc.perform(MockMvcRequestBuilders.get("/courses").contentType("text/html")).andDo(print())
-                .andExpect(MockMvcResultMatchers.status().isOk());
+        String responseContent = mvc.perform(MockMvcRequestBuilders.get("/courses").contentType("text/html"))
+                .andDo(print()).andExpect(MockMvcResultMatchers.status().isOk()).andReturn().getResponse()
+                .getContentAsString();
+
+        assertTrue(responseContent.contains(FIRST_TEST_COURSE_NAME));
+        assertTrue(responseContent.contains(SECOND_TEST_COURSE_NAME));
+        verify(courseService, times(1)).findAll();
     }
 }

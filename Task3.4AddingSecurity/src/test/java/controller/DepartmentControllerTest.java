@@ -1,6 +1,9 @@
 package controller;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 
 import java.util.Arrays;
@@ -42,7 +45,12 @@ class DepartmentControllerTest {
 
         given(departmentService.findAll()).willReturn(allDepartments);
 
-        mvc.perform(MockMvcRequestBuilders.get("/departments").contentType("text/html")).andDo(print())
-                .andExpect(MockMvcResultMatchers.status().isOk());
+        String responseContent = mvc.perform(MockMvcRequestBuilders.get("/departments").contentType("text/html"))
+                .andDo(print()).andExpect(MockMvcResultMatchers.status().isOk()).andReturn().getResponse()
+                .getContentAsString();
+
+        assertTrue(responseContent.contains(FIRST_TEST_DEPARTMENT_NAME));
+        assertTrue(responseContent.contains(SECOND_TEST_DEPARTMENT_NAME));
+        verify(departmentService, times(1)).findAll();
     }
 }

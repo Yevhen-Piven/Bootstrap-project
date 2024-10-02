@@ -1,6 +1,9 @@
 package controller;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 
 import java.util.Arrays;
@@ -42,7 +45,12 @@ class GroupControllerTest {
 
         given(groupService.findAll()).willReturn(allGroups);
 
-        mvc.perform(MockMvcRequestBuilders.get("/groups").contentType("text/html")).andDo(print())
-                .andExpect(MockMvcResultMatchers.status().isOk());
+        String responseContent = mvc.perform(MockMvcRequestBuilders.get("/groups").contentType("text/html"))
+                .andDo(print()).andExpect(MockMvcResultMatchers.status().isOk()).andReturn().getResponse()
+                .getContentAsString();
+
+        assertTrue(responseContent.contains(FIRST_TEST_GROUP_NAME));
+        assertTrue(responseContent.contains(SECOND_TEST_GROUP_NAME));
+        verify(groupService, times(1)).findAll();
     }
 }

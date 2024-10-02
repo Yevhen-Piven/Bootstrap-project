@@ -18,6 +18,7 @@
         <junit.jupiter.version>5.10.3</junit.jupiter.version>
     </properties>
     <dependencies>
+    
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
